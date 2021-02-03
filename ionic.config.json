@@ -1,0 +1,7 @@
+{
+  "name": "qr_spelling",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

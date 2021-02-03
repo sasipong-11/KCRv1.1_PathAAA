@@ -1,0 +1,64 @@
+page-download {
+  font-family: THSarabun_Bold !important;
+
+  .scroll-content {
+    overflow-y: hidden;
+  }
+
+  ion-grid {
+    height: 100%;
+  }
+
+  .grad1 {
+    font-family: Khianlen !important;
+    background: -webkit-linear-gradient(left, #ff9900, #fd699a, #676cfb); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #ff9900, #fd699a, #676cfb); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #ff9900, #fd699a, #676cfb); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #ff9900, #fd699a, #676cfb); /* Standard syntax (must be last) */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 12vw;
+  }
+
+  .grad2 {
+    font-family: Khianlen !important;
+    background: -webkit-linear-gradient(left, #000000, #000000, #000000); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #000000, #000000, #000000); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #000000, #000000, #000000); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #000000, #000000, #000000); /* Standard syntax (must be last) */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2.5vw;
+  }
+
+  .default {
+    background-color: #e4ebea;
+    button {
+      background-color: #08ae9e;
+    }
+  }
+  .p0 {
+    background-color: #e6ebef;
+    button {
+      background-color: #dd9292;
+    }
+  }
+  .p1 {
+    background-color: #e7ebca;
+    button {
+      background-color: #5d6d7e;
+    }
+  }
+  .p2 {
+    background-color: #fdebe1;
+    button {
+      background-color: #1f618d;
+    }
+  }
+  .p3 {
+    background-color: #feefc4;
+    button {
+      background-color: #dc7633;
+    }
+  }
+}

@@ -1,0 +1,45 @@
+<ion-content class="{{ theme }}" *ngIf="part == 1" style="background: black;">
+  <ion-fab top left>
+    <button ion-fab mini color="qr-btn" (click)="back()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>
+
+<ion-content class="{{ theme }}" *ngIf="part == 2" style="background: none transparent;">
+
+  <ion-fab top left>
+    <button ion-fab mini color="qr-btn" (click)="back()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines text-center style="margin-top:35%; background-color: transparent;">
+          <!-- <ion-icon name="qr-scanner" color="qr-btn" class="focus-icon"></ion-icon> -->
+          <img src="assets/imgs/qr-focus.png" style="width: 20em;height: 20em;opacity: 0.2;">
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-item text-center no-lines>
+       
+      <ion-avatar item-start>
+        <img src="assets/imgs/default.png" style="margin-left:4vw; height: 8vh !important; width: 8vh !important;">
+      </ion-avatar>
+      <p style="font-size: 5vw">วางคิวอาร์โค้ดไว้ภายในพื้นที่สี่เหลี่ยมเพื่อสแกน</p>    
+     <p style="margin: 0px">
+      <img src="assets/imgs/logo-nstda.png" style="margin-right: 0.5vh; height: 5vh; width: 10vh;">  
+      <img src="assets/imgs/logo-amed.png" style="height: 5vh ; width: 10vh;">
+    </p>
+    </ion-item>
+    <!-- ตำแหน่งและรูปแบบการแสดงผล -->
+  </ion-toolbar>
+</ion-footer>

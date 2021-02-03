@@ -1,0 +1,40 @@
+<ion-header class="{{ theme }}">
+  <ion-navbar transparent>
+    <ion-title>
+      <p class="text-nav">ประวัติการใช้</p>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-sliding  *ngFor="let history of sortHistory;let i = index;">
+    <button ion-item (click)="goShow(i)">
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/{{ history.his_level || 'default' }}.png">
+      </ion-thumbnail>
+      <p style="font-size: 7vw">{{ history.his_text }}</p>
+      <p style="font-size: 4vw">{{ history.his_spell }}</p>
+      <ion-note item-end margin>
+        {{ history.his_date }}
+      </ion-note>
+    </button>
+
+    <ion-item-options side="end">
+        <button color="danger" style="width:20vw;font-size: 5vw"  ion-button (click)="Delete(history)">
+          ลบ
+        </button>
+      </ion-item-options>
+      </ion-item-sliding>
+
+    <!-- <ion-item *ngIf="historyData.length == 0 ? true : false" style="text-align:center;font-size: 4vw" no-lines padding>
+      None
+    </ion-item> -->
+
+  </ion-list>
+  
+  <ion-fab class="{{ theme }}" right bottom>
+    <button ion-fab style="font-size: 3vh ; font-weight: bold ;height: 9vh ;width: 9vh" (click)="presentAlertConfirm()">ลบ</button>
+  </ion-fab>
+
+</ion-content>

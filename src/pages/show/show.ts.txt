@@ -1,0 +1,60 @@
+_limit += words[i].length;
+
+          this._spelling.push({
+            value: words[i],
+            br: _limit >= 19 ? true : false,
+            status: false
+          });
+          _limit = _limit >= 19 ? words[i].length : _limit;
+
+          // this._spelling.push({
+          //   value: words[i],
+          //   br: _past_word == words[i] ? true : false,
+          //   status: false
+          // });
+
+          // _past_word = words[i];
+
+          // setTimeout(() => {
+          //   let index_ = index;
+          //   if ((index == 0) && (this._word_path != '')) {
+          //     // this._audio = new Audio(this._word_path);
+          //     // this._audio.play();
+          //   } else {
+          //     setTimeout(() => {
+          //       this._spelling[index_ - 1].status = false;
+          //     }, 400);
+          //     this._image = this._word_level + '_' + s;
+          //     s = s == 3 ? 1 : s + 1;
+          //   }
+          //   if ((index + 1) == words.length) {
+          //     this._refresh_status = false;
+          //     this._image = this._word_level + '_0';
+          //   }
+
+          //   if (this._spelling[index].value != '-') {
+          //     this._spelling[index].status = true;
+          //     this.render.setElementClass(this._spelltext._results[index].nativeElement, 'color_text', true);
+          //     this.render.setElementStyle(this._spelltext._results[index].nativeElement, 'opacity', '1');
+          //     this.render.setElementStyle(this._spelltext._results[index].nativeElement, 'font-size', size_big); //
+
+          //     setTimeout(() => {
+          //       this.render.setElementStyle(this._spelltext._results[index_].nativeElement, 'font-size', size_); //
+          //       if (index != words.length) {
+          //         this.render.setElementStyle(this._spelltext._results[index_].nativeElement, 'opacity', '0');
+          //       }
+          //     }, this._spelling_time);
+          //   }
+
+          //   index += 1;
+          // }, time);
+
+          // time += this._spelling_time;
+        }
+        console.log(this._spell_sup._results);
+        console.log(this._spelltext._results);
+        for (let i in this._spell_sup._results.length) {
+          console.log(i);
+          this.render.setElementStyle(this._spell_sup._results[i].nativeElement, 'font-size', '6vw');
+          this.render.setElementStyle(this._spelltext._results[i].nativeElement, 'font-size', '6vw');
+        }

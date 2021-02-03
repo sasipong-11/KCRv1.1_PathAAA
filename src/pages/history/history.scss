@@ -1,0 +1,108 @@
+page-history {
+  ion-note {
+    font-size: 4vw;
+    align-self: flex-start;
+  }
+
+  font-family: THSarabun_Bold !important;
+
+  .default {
+    ion-icon {
+      color: white;
+    }
+    .text-nav {
+      color: white;
+      font-size: 8vw;
+      margin: 0px;
+    }
+    // button {
+    background-color: #ffffff;
+    // }
+    ion-navbar{
+      background-color: #08ae9e;
+    }
+    button {
+      background-color: #08ae9e;
+    }
+  }
+  .p0 {
+    ion-icon {
+      color: white;
+    }
+    .text-nav {
+      color: white;
+      font-size: 8vw;
+      margin: 0px;
+    }
+    // background-color: #e6ebef;
+    // button {
+    background-color: #ffffff;
+    // }
+    ion-navbar{
+      background-color: #dd9292;
+    }
+    button {
+      background-color: #dd9292;
+    }
+  }
+  .p1 {
+    ion-icon {
+      color: white;
+    }
+    .text-nav {
+      color: white;
+      font-size: 8vw;
+      margin: 0px;
+    }
+    // background-color: #e7ebca;
+    // button {
+    background-color: #ffffff;
+    // }
+    ion-navbar{
+      background-color: #5d6d7e;
+    }
+    button {
+      background-color: #5d6d7e;
+    }
+  }
+  .p2 {
+    ion-icon {
+      color: white;
+    }
+    .text-nav {
+      color: white;
+      font-size: 8vw;
+      margin: 0px;
+    }
+    // background-color: #fdebe1;
+    // button {
+    background-color: #ffffff;
+    // }
+    ion-navbar{
+      background-color: #1f618d;
+    }
+    button {
+      background-color: #1f618d;
+    }
+  }
+  .p3 {
+    ion-icon {
+      color: white;
+    }
+    .text-nav {
+      color: white;
+      font-size: 8vw;
+      margin: 0px;
+    }
+    // background-color: #feefc4;
+    // button {
+    background-color: #ffffff;
+    // }
+    ion-navbar{
+      background-color: #dc7633;
+    }
+    button {
+      background-color: #dc7633;
+    }
+  }
+}

@@ -1,0 +1,57 @@
+page-scan {
+  font-family: THSarabun_Bold !important;
+
+  .focus-button {
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    // box-shadow: none;
+  }
+
+  .scroll-content {
+    overflow-y: hidden;
+  }
+
+  ion-grid {
+    height: 100%;
+  }
+
+  .focus-icon {
+    font-size: 15em; //Preferred size here
+    opacity: 0.2;
+  }
+
+  .default {
+    button {
+      background-color: #08ae9e;
+    }
+  }
+  .p0 {
+    // background-color: #e6ebef;
+    button {
+      background-color: #dd9292;
+    }
+  }
+  .p1 {
+    // background-color: #e7ebca;
+    button {
+      background-color: #5d6d7e;
+    }
+  }
+  .p2 {
+    // background-color: #fdebe1;
+    button {
+      background-color: #1f618d;
+    }
+  }
+  .p3 {
+    // background-color: #feefc4;
+    button {
+      background-color: #dc7633;
+    }
+  }
+  
+}

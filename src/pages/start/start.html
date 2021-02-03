@@ -1,0 +1,57 @@
+<ion-fab top right class="{{ theme }}" #fab>
+  <button ion-fab mini >
+    <ion-icon name="settings"></ion-icon>
+  </button>
+
+  <ion-fab-list class="fab-list" side="bottom" >
+
+    <ion-item class="fab-item1">
+    <button class="grad2" (click)="goViewDocument(fab)" >
+      <ion-icon  name="information-circle"  ></ion-icon>
+      คู่มือการใช้งาน
+    </button>
+  </ion-item>
+
+  <ion-item class="fab-item2">
+    <button class="grad2" (click)="goCancelRegis(fab)">
+      <ion-icon name="close-circle"></ion-icon>
+      ยกเลิกรหัสการใช้งาน
+    </button>
+  </ion-item>
+
+  </ion-fab-list>
+</ion-fab>
+
+<ion-content padding class="{{ theme }}" fullscreen>
+  <ion-grid>
+    <ion-row style="height:90vh">
+      <ion-col col-12 style="margin: auto">
+        <ion-row>
+          <ion-col text-center class="grad1">
+            เด็กอ่านได้
+          </ion-col>
+        </ion-row>
+        <ion-row margin>
+          <ion-col text-center padding margin>
+            <img src="assets/imgs/{{ theme }}.png" style="width: 45vw">
+          </ion-col>
+        </ion-row>
+        <ion-row padding>
+          <ion-col text-center padding>
+            <button ion-button round full style="font-size: 5vh ;height:7vh;" (click)="goScan()">
+              สแกนบัตรคำ
+            </button>
+            <br />
+            <button ion-button round full style="font-size: 5vh ;height:7vh;" (click)="goHistory()">
+              ประวัติการใช้
+            </button>
+            <br />
+            <!-- <button ion-button round full style="font-size: 5vh ;height:7vh;" (click)="goCancelRegis()">
+              ยกเลิกรหัส
+            </button> -->
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

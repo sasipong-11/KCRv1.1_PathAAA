@@ -1,0 +1,94 @@
+Android Studio project detected
+cp: copyFileSync: could not write to dest file (code=EPERM):D:\kidcanread_final_thai\kidcanread_v1.1\platforms\android\app\src\main\assets\www\assets\icon\._favicon.ico
+
+cp: copyFileSync: could not write to dest file (code=EPERM):D:\kidcanread_final_thai\kidcanread_v1.1\platforms\android\app\src\main\assets\www\assets\imgs\.DS_Store
+
+cp: copyFileSync: could not write to dest file (code=EPERM):D:\kidcanread_final_thai\kidcanread_v1.1\platforms\android\app\src\main\assets\www\assets\imgs\callout\.DS_Store
+
+ANDROID_HOME=C:\Users\801335\AppData\Local\Android\Sdk
+JAVA_HOME=C:\Program Files\java\jdk1.8.0_202
+studio
+Subproject Path: CordovaLib
+Subproject Path: app
+publishNonDefault is deprecated and has no effect anymore. All variants are now published.
+Configuration 'compile' in project ':app' is deprecated. Use 'implementation' instead.
+The Task.leftShift(Closure) method has been deprecated and is scheduled to be removed in Gradle 5.0. Please use Task.doLast(Action) instead.
+	at build_1dgeag856yreqphs2enxn6gtz.run(D:\kidcanread_final_thai\kidcanread_v1.1\platforms\android\app\build.gradle:144)
+:CordovaLib:preBuild UP-TO-DATE
+:CordovaLib:preDebugBuild UP-TO-DATE
+:CordovaLib:compileDebugAidl UP-TO-DATE
+:CordovaLib:compileDebugRenderscript UP-TO-DATE
+:CordovaLib:checkDebugManifest UP-TO-DATE
+:CordovaLib:generateDebugBuildConfig UP-TO-DATE
+:CordovaLib:prepareLintJar UP-TO-DATE
+:CordovaLib:generateDebugResValues UP-TO-DATE
+:CordovaLib:generateDebugResources UP-TO-DATE
+:CordovaLib:packageDebugResources UP-TO-DATE
+:CordovaLib:platformAttrExtractor UP-TO-DATE
+:CordovaLib:processDebugManifest UP-TO-DATE
+:CordovaLib:processDebugResources UP-TO-DATE
+:CordovaLib:generateDebugSources UP-TO-DATE
+:CordovaLib:javaPreCompileDebug UP-TO-DATE
+:CordovaLib:compileDebugJavaWithJavac UP-TO-DATE
+:CordovaLib:processDebugJavaRes NO-SOURCE
+:CordovaLib:transformClassesAndResourcesWithPrepareIntermediateJarsForDebug UP-TO-DATE
+:app:preBuild UP-TO-DATE
+:app:preDebugBuild UP-TO-DATE
+:app:compileDebugAidl UP-TO-DATE
+:CordovaLib:packageDebugRenderscript NO-SOURCE
+:app:compileDebugRenderscript UP-TO-DATE
+:app:checkDebugManifest UP-TO-DATE
+:app:generateDebugBuildConfig UP-TO-DATE
+:app:prepareLintJar UP-TO-DATE
+:app:generateDebugResValues UP-TO-DATE
+:app:generateDebugResources UP-TO-DATE
+:app:mergeDebugResources UP-TO-DATE
+:app:createDebugCompatibleScreenManifests UP-TO-DATE
+:app:processDebugManifest UP-TO-DATE
+:app:splitsDiscoveryTaskDebug UP-TO-DATE
+:app:processDebugResources UP-TO-DATE
+:app:generateDebugSources UP-TO-DATE
+:app:javaPreCompileDebug UP-TO-DATE
+:app:compileDebugJavaWithJavac UP-TO-DATE
+:app:compileDebugNdk NO-SOURCE
+:app:compileDebugSources UP-TO-DATE
+:CordovaLib:mergeDebugShaders UP-TO-DATE
+:CordovaLib:compileDebugShaders UP-TO-DATE
+:CordovaLib:generateDebugAssets UP-TO-DATE
+:CordovaLib:mergeDebugAssets UP-TO-DATE
+:app:mergeDebugShaders UP-TO-DATE
+:app:compileDebugShaders UP-TO-DATE
+:app:generateDebugAssets UP-TO-DATE
+:app:mergeDebugAssets UP-TO-DATE
+:app:transformClassesWithStackFramesFixerForDebug UP-TO-DATE
+:app:transformClassesWithDesugarForDebug UP-TO-DATE
+:app:transformClassesWithDexBuilderForDebug UP-TO-DATE
+:app:transformDexArchiveWithExternalLibsDexMergerForDebug UP-TO-DATE
+:app:transformDexArchiveWithDexMergerForDebug UP-TO-DATE
+:CordovaLib:compileDebugNdk NO-SOURCE
+:CordovaLib:mergeDebugJniLibFolders UP-TO-DATE
+:CordovaLib:transformNativeLibsWithMergeJniLibsForDebug UP-TO-DATE
+:CordovaLib:transformNativeLibsWithIntermediateJniLibsForDebug UP-TO-DATE
+:app:mergeDebugJniLibFolders UP-TO-DATE
+:app:transformNativeLibsWithMergeJniLibsForDebug UP-TO-DATE
+:app:processDebugJavaRes NO-SOURCE
+:app:transformResourcesWithMergeJavaResForDebug UP-TO-DATE
+:app:validateSigningDebug
+:app:packageDebug UP-TO-DATE
+:app:assembleDebug UP-TO-DATE
+:app:cdvBuildDebug UP-TO-DATE
+
+BUILD SUCCESSFUL in 1s
+46 actionable tasks: 1 executed, 45 up-to-date
+Built the following apk(s): 
+	D:\kidcanread_final_thai\kidcanread_v1.1\platforms\android\app\build\outputs\apk\debug\app-debug.apk
+ANDROID_HOME=C:\Users\801335\AppData\Local\Android\Sdk
+JAVA_HOME=C:\Program Files\java\jdk1.8.0_202
+No target specified, deploying to device 'R58N12R2FCX'.
+none
+Skipping build...
+Built the following apk(s): 
+	D:\kidcanread_final_thai\kidcanread_v1.1\platforms\android\app\build\outputs\apk\debug\app-debug.apk
+Using apk: D:\kidcanread_final_thai\kidcanread_v1.1\platforms\android\app\build\outputs\apk\debug\app-debug.apk
+Package name: th.or.nstda.kcr
+LAUNCH SUCCESS
