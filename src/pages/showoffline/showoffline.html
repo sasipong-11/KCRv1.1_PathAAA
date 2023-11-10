@@ -5,7 +5,49 @@
     </button>
   </ion-fab>
 </ion-content>
-<ion-content class="{{ theme }}" *ngIf="_state" fullscreen>
+
+
+<!-- Content 1 Reading Word -->
+<ion-content class="{{ theme }}" *ngIf="_state && _readWord_status" fullscreen>
+
+  <ion-fab top left>
+    <button ion-fab mini color="qr-btn" (click)="back()" [disabled]="_refresh_status">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-fab top right>
+    <button ion-fab mini color="qr-btn" (click)="refresh()" [disabled]="_refresh_status">
+      <ion-icon name="refresh"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-grid  >
+    <ion-row justify-content-center align-items-center style="height: 100vh;width: 100vw;position:absolute;">
+      <ion-col text-center >
+
+              <div class=" {{ theme }} ">
+              <ion-card class="card2 animate fadeInDown one" text-center>
+                <ion-card-header>
+                  <ion-card-title>{{ _word_name }}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  คำศัพท์ระดับชั้น{{ _text_level }}
+                </ion-card-content>
+              </ion-card>
+            </div>
+
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>
+
+
+
+
+<!-- Content 2 Spelling Word -->
+<ion-content class="{{ theme }}" *ngIf="_state && !_readWord_status" fullscreen>
 
   <ion-fab top left>
     <button ion-fab mini color="qr-btn" (click)="back()" [disabled]="_refresh_status">
@@ -78,8 +120,7 @@
 
         <ion-item no-lines text-center>
           <ng-container *ngFor="let word of _spelling;let i = index">
-            <!-- <br *ngIf="word.br" /> -->
-            <br *ngIf="word.value == '-' && _spelling[i+1].value == '-' " />  <!-- แก้การเว้นบรรทัด -->
+            <br *ngIf="word.br" />
             <span *ngIf="!word.status" class="text-spell" [style.font-size]="_font_size + 'vw'">{{ word.value }}</span>
             <span *ngIf="word.status" class="text-spell-sup"
               [style.font-size]="_font_size + 'vw'">{{ word.value }}</span>
@@ -100,8 +141,7 @@
         </ion-item>
         <ion-item no-lines text-center>
           <ng-container *ngFor="let word of _spelling;let i = index">
-            <!-- <br *ngIf="word.br" /> -->
-            <br *ngIf="word.value == '-' && _spelling[i+1].value == '-' " />    <!-- แก้การเว้นบรรทัด -->
+            <br *ngIf="word.br" />
             <span *ngIf="word.value != '-'" #spell class="text-spell" style="opacity: 0"
               [style.font-size]="_font_size + 'vw'">{{ word.value }}</span>
             <span *ngIf="word.value == '-'" #spell class="text-spell-sup"

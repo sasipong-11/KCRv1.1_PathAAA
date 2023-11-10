@@ -9,6 +9,10 @@ import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/na
 
 import { StorageProvider } from '../../providers/storage/storage';
 import { StartPage2 } from '../start2/start2';
+import { SqliteProvider } from '../../providers/sqlite/sqlite';
+import { Media, MediaObject } from '@ionic-native/media';
+import { File } from '@ionic-native/file/index';
+
 @IonicPage()
 @Component({
   selector: 'page-scan',
@@ -28,8 +32,11 @@ export class ScanPage {
     public alertController: AlertController,
     private platform: Platform,
     private loadCtrl: LoadingController,
-    private storage : StorageProvider,
-    private nativePageTransitions: NativePageTransitions) {
+    private storage: StorageProvider,
+    private nativePageTransitions: NativePageTransitions,
+    private sqlPro: SqliteProvider,
+    private file: File,
+    private media: Media,) {
 
     if (this.platform.is('android') || this.platform.is('ios')) {
       // set to Orientation
@@ -51,16 +58,20 @@ export class ScanPage {
     setTimeout(() => {
       this.part = 2;
     }, 200);
+
     this.scan();
+
     setTimeout(() => {
 
       loading.dismiss();
     }, 800);
+
   }
   ionViewWillLeave() {
     this.qrScanner.hide();
     this.hideCamera();/////////////
   }
+
   async scan() {
     await this.showCamera();///////////
     await this.qrScanner.prepare()
@@ -80,11 +91,13 @@ export class ScanPage {
             //   slidePixels: 20
             // };
             // this.nativePageTransitions.slide(options);
+
             this.navCtrl.getPrevious().data.qrData = text;
             this.navCtrl.pop();
           });
 
           this.qrScanner.show();
+
         } else if (status.denied) {
           console.log('Camera permission denied');
         } else {
@@ -93,7 +106,6 @@ export class ScanPage {
       })
       .catch(async (e: any) => {
         console.log('Error is', e);
-
 
         // Show alert เมื่อผู้ใช้ปฏิเสธ permission
         console.warn('permission denied !');
@@ -124,8 +136,6 @@ export class ScanPage {
     (window.document.querySelector('ion-app') as HTMLElement).classList.remove('cameraView');
   }
 
-
-
   back() {
     // if (this.navCtrl.canGoBack()) {
     //   let options: NativeTransitionOptions = {
@@ -137,14 +147,14 @@ export class ScanPage {
     //   this.nativePageTransitions.slide(options);
     //   this.navCtrl.pop();
     // } else {
-      let options: NativeTransitionOptions = {
-        direction: 'down',
-        duration: 500,
-        slowdownfactor: 1,
-        slidePixels: 20
-      };
-      this.nativePageTransitions.slide(options);
-      this.navCtrl.setRoot(StartPage);
+    let options: NativeTransitionOptions = {
+      direction: 'down',
+      duration: 500,
+      slowdownfactor: 1,
+      slidePixels: 20
+    };
+    this.nativePageTransitions.slide(options);
+    this.navCtrl.setRoot(StartPage);
     // }
   }
 }

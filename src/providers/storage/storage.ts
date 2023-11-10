@@ -19,7 +19,7 @@ export class StorageProvider {
    * @field 'his_text'
    * @field 'his_code'
    * @field 'his_spell'
-   *
+   * @field 'his_index'
    * @table 'kdr_tb_level'
    * @field 'level'
    */

@@ -11,7 +11,7 @@ import { Storage } from '@ionic/storage';
 
 import { TestsqliteProvider } from '../../providers/testsqlite/testsqlite';
 import { Media, MediaObject } from '@ionic-native/media/index';
-import {File} from '@ionic-native/file/index';
+import { File } from '@ionic-native/file/index';
 import { SqliteProvider } from '../../providers/sqlite/sqlite';
 
 
@@ -38,6 +38,8 @@ export class ShowofflinePage {
 
   _audio: MediaObject = null;
 
+  _readWord_status: boolean = true;
+
   _spelling: any;
   _spelling_time: number = 500; // ms
   _spelling_status: boolean = false;
@@ -50,6 +52,9 @@ export class ShowofflinePage {
   _word_qrcode: string = '';
   _word_path: string = '';
   _word_level: string = 'p0';
+  _word_path_2: string = '';
+
+  _text_level: string = '';
 
   _page: string = 'startpage';
 
@@ -92,7 +97,8 @@ export class ShowofflinePage {
   }
 
   ionViewDidLoad() {
-    // this.qrData = "PLMw9IDwwK7owKOwLTLMRfLx/H4oLA1f";
+    // data for test
+    this.qrData = "PLMw9IDwwK7owKOwLTLMRfLx/H4oLA1f";
   }
 
   ionViewWillEnter() {
@@ -104,7 +110,7 @@ export class ShowofflinePage {
         // set to Orientation
         this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
       }
-      if (this._page == 'historypage'){
+      if (this._page == 'historypage') {
         console.log(this._page);
         this._CheckRefresh_status = true;
       }
@@ -157,39 +163,44 @@ export class ShowofflinePage {
 
     this._image_callout = this.getRandomInt(3) + '_' + this.getRandomInt(4);
     let param = new FormData();
-    param.append("word_code",this.qrData);
+    param.append("word_code", this.qrData);
     console.warn(param.append("word_code", this.qrData));
 
     await this.sqlPro.getSQLiteData(this.qrData).then((res) => {
 
-        this._state = true;
-        this._word_name = this.sqlPro.row_data[0].word_name;
-        this._word_spell = this.sqlPro.row_data[0].word_spell;
-        this._word_qrcode = this.sqlPro.row_data[0].word_pic;
-        this._word_path = this.sqlPro.row_data[0].word_voice;
-        this._word_level = this.sqlPro.row_data[0].word_level;
+      this._state = true;
+      this._word_name = this.sqlPro.row_data[0].word_name;
+      this._word_spell = this.sqlPro.row_data[0].word_spell;
+      this._word_qrcode = this.sqlPro.row_data[0].word_pic;
+      this._word_path = this.sqlPro.row_data[0].word_voice_spell;
+      this._word_level = this.sqlPro.row_data[0].word_level;
+      this._word_path_2 = this.sqlPro.row_data[0].word_voice;
 
-        let date: Date = new Date();
+      let date: Date = new Date();
 
-        let row = {
-          his_id: this.sqlPro.row_data[0].word_id,
-          his_text: this.sqlPro.row_data[0].word_name,
-          his_code: this.sqlPro.row_data[0].word_code,
-          his_spell: this.sqlPro.row_data[0].word_spell,
-          his_level: this.sqlPro.row_data[0].word_level,
-          his_date: date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()
-        }
-        this.storage.setWord('kdr_tb_history', this.sqlPro.row_data[0].word_id, row);
-        this.theme = this._word_level;
-        this.storage.updateLevel(this._word_level);
-        this.storage.commit('show');
-        this._spelling_time = parseInt('500');
-        if (this._page == 'historypage'){
-          this.refresh();
-        } else {
-          // this.refresh();         //test ไม่นับถอยหลัง
-          this.spelling();
-        }
+      let row = {
+        his_id: this.sqlPro.row_data[0].word_id,
+        his_text: this.sqlPro.row_data[0].word_name,
+        his_code: this.sqlPro.row_data[0].word_code,
+        his_spell: this.sqlPro.row_data[0].word_spell,
+        his_level: this.sqlPro.row_data[0].word_level,
+        his_date: date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()
+      }
+      this.storage.setWord('kdr_tb_history', this.sqlPro.row_data[0].word_id, row);
+      this.theme = this._word_level;
+      this.storage.updateLevel(this._word_level);
+      this.storage.commit('show');
+      this._spelling_time = parseInt('500');
+
+      if (this._page == 'historypage') {
+        this._readWord_status = false;
+        this.refresh();
+      } else {
+        // this.refresh();         //test แบบไม่นับถอยหลัง
+        this._readWord_status = false;
+        // this.spelling();
+        this.readWord();
+      }
     }).catch(error => {
       this.back();
       setTimeout(() => {
@@ -200,27 +211,60 @@ export class ShowofflinePage {
   }
 
   ionViewWillLeave() {
-    this._ionLeave_status = true ;
+    this._ionLeave_status = true;
     if (this._audio != null) {
       this._audio.stop();
       this._audio.release();
     }
   }
 
+  // ฟังก์ชันอ่านคำก่อนสะกดคำ
+  readWord() {
+    this._refresh_status = true;
+    this._readWord_status = true;
+    this._audio = this.media.create(this.file.externalApplicationStorageDirectory + 'Voice/word/' + this._word_path_2);
+
+    if (this._word_level.match("p0")) {
+      this._text_level = "อนุบาล"
+    } else if (this._word_level.match("p1")) {
+      this._text_level = "ประถมศึกษาปีที่ 1"
+    } else if (this._word_level.match("p2")) {
+      this._text_level = "ประถมศึกษาปีที่ 2"
+    } else if (this._word_level.match("p3")) {
+      this._text_level = "ประถมศึกษาปีที่ 3"
+    }
+
+    setTimeout(() => {
+      if (this._ionLeave_status == false) {
+        this._audio.play();
+      }
+    }, 1000);
+
+
+    setTimeout(() => {
+      this._readWord_status = false;
+      // this._CheckRefresh_status = true;
+      this._audio.release();
+      this.spelling();
+    }, 3500);
+
+
+  }
+
   async spelling() {
     if (this._word_spell != '') {
 
-      this._audio = this.media.create(this.file.externalApplicationStorageDirectory + 'Voice/' + this._word_path);
+      this._audio = this.media.create(this.file.externalApplicationStorageDirectory + 'Voice/spell/' + this._word_path);
       let limit_: number = 0;
       this._image = this._word_level + '_0';
       this._refresh_status = true;
       this._spelling_status = false;
 
       setTimeout(() => {
-          if (this._ionLeave_status == false){
+        if (this._ionLeave_status == false) {
           this._audio.play();
-          }
-        }, 3300);
+        }
+      }, 3300);
 
       setTimeout(() => {
         this._spelling_status = true;
@@ -246,7 +290,7 @@ export class ShowofflinePage {
         } else if ((words_full.length > 30) && (words_full.length <= 40)) {
           this._font_size = 5;
           this._text_limit = 25; //limit 24
-        }else if ((words_full.length > 40) && (words_full.length <= 60)) {
+        } else if ((words_full.length > 40) && (words_full.length <= 60)) {
           this._font_size = 4;
           this._text_limit = 25; //limit 24
         } else {
@@ -260,9 +304,19 @@ export class ShowofflinePage {
         for (let i in words) {
           limit_ += words[i].length;
 
+          //ขึ้นบรรทัดใหม่
+          let brSet;
+          let check = parseInt(i) - 2;
+          if (words[i] != "-" && words[check] == "-") {
+            brSet = true;
+          } else {
+            brSet = false;
+          }
+
           this._spelling.push({
             value: words[i],
-            br: limit_ >= this._text_limit ? true : false,
+            // br: limit_ >= this._text_limit ? true : false,
+            br: brSet,
             status: false
           });
           limit_ = limit_ >= this._text_limit ? words[i].length : limit_;
@@ -307,7 +361,7 @@ export class ShowofflinePage {
 
   async refresh() {
     if (this._word_spell != '') {
-      this._audio = this.media.create(this.file.externalApplicationStorageDirectory + 'Voice/' + this._word_path);
+      this._audio = this.media.create(this.file.externalApplicationStorageDirectory + 'Voice/spell/' + this._word_path);
       let limit_: number = 0;
       this._image = this._word_level + '_0';
       this._CheckRefresh_status = true;
@@ -342,7 +396,7 @@ export class ShowofflinePage {
         } else if ((words_full.length > 30) && (words_full.length <= 40)) {
           this._font_size = 5;
           this._text_limit = 25; //limit 24
-        }else if ((words_full.length > 40) && (words_full.length <= 60)) {
+        } else if ((words_full.length > 40) && (words_full.length <= 60)) {
           this._font_size = 4;
           this._text_limit = 25; //limit 24
         } else {
@@ -355,9 +409,19 @@ export class ShowofflinePage {
         for (let i in words) {
           limit_ += words[i].length;
 
+          //ขึ้นบรรทัดใหม่
+          let brSet;
+          let check = parseInt(i) - 2;
+          if (words[i] != "-" && words[check] == "-") {
+            brSet = true;
+          } else {
+            brSet = false;
+          }
+
           this._spelling.push({
             value: words[i],
-            br: limit_ >= this._text_limit ? true : false,
+            // br: limit_ >= this._text_limit ? true : false,
+            br: brSet,
             status: false
           });
           limit_ = limit_ >= this._text_limit ? words[i].length : limit_;

@@ -5,7 +5,81 @@
     </button>
   </ion-fab>
 </ion-content>
-<ion-content class="{{ theme }}" *ngIf="_state" fullscreen>
+
+
+
+<!-- Content 1 Reading Word -->
+<ion-content class="{{ theme }}" *ngIf="_state && _readWord_status" fullscreen>
+
+  <div class="demo_edit" #cooldown>
+    <div class="demo_edit__colored-blocks">
+      <div class="demo_edit__colored-blocks-rotater">
+        <div class="demo_edit__colored-block"></div>
+        <div class="demo_edit__colored-block"></div>
+        <div class="demo_edit__colored-block"></div>
+      </div>
+      <div class="demo_edit__colored-blocks-inner"></div>
+      <div class="demo_edit__text"> {{ _word_name }} </div>
+    </div>
+  </div>
+
+
+  <ion-grid  >
+    <ion-row justify-content-center align-items-center style="height: 100vh;width: 100vw;position:absolute;">
+      <ion-col text-center >
+        <ion-item no-lines text-center>
+
+          <p class="text-word">
+            <!-- {{ _word_name }} -->
+          </p>
+
+        </ion-item>
+
+        <br><br><br><br>
+        <br><br><br><br>
+        <br><br><br><br>
+        <br><br><br><br>
+        <br>
+        <br>
+        <br>
+
+        <button ion-button round style="font-size: 4vh ;height:7vh;" (click)="click()">
+          อ่านสะกดคำ
+        </button>
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row text-center offset-1>
+      <ion-col>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+
+<!-- Test -->
+
+<!-- <ion-content class="{{ theme }}" *ngIf="_state && _readWord_status" fullscreen>
+  <div class="demo_edit" #cooldown>
+    <div class="demo_edit__colored-blocks">
+      <div class="demo_edit__colored-blocks-rotater">
+        <div class="demo_edit__colored-block"></div>
+        <div class="demo_edit__colored-block"></div>
+        <div class="demo_edit__colored-block"></div>
+      </div>
+      <div class="demo_edit__colored-blocks-inner"></div>
+      <div class="demo_edit__text"> {{ _word_name }} </div>
+    </div>
+  </div>
+
+</ion-content> -->
+
+
+
+<!-- Content 2 Spelling Word -->
+<ion-content class="{{ theme }}" *ngIf="_state && !_readWord_status" fullscreen>
 
   <ion-fab top left>
     <button ion-fab mini color="qr-btn" (click)="back()" [disabled]="_refresh_status">
@@ -78,7 +152,9 @@
 
         <ion-item no-lines text-center>
           <ng-container *ngFor="let word of _spelling;let i = index">
-            <br *ngIf="word.value == '-' && _spelling[i-1].value == '-' " />
+            <!-- <br *ngIf="word.value != '-' && _spelling[i-2].value == '-' " > -->
+
+            <br *ngIf="word.br" />
             <span *ngIf="!word.status" class="text-spell" [style.font-size]="_font_size + 'vw'">{{ word.value }}</span>
             <span *ngIf="word.status" class="text-spell-sup"
               [style.font-size]="_font_size + 'vw'">{{ word.value }}</span>
@@ -99,7 +175,8 @@
         </ion-item>
         <ion-item no-lines text-center>
           <ng-container *ngFor="let word of _spelling;let i = index">
-            <br *ngIf="word.value == '-' && _spelling[i-1].value == '-' " />
+            <!-- <br *ngIf="word.value != '-' && _spelling[i-2].value == '-' " /> -->
+            <br *ngIf="word.br" />
             <span *ngIf="word.value != '-'" #spell class="text-spell" style="opacity: 0"
               [style.font-size]="_font_size + 'vw'">{{ word.value }}</span>
             <span *ngIf="word.value == '-'" #spell class="text-spell-sup"

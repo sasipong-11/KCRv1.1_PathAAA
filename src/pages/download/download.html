@@ -1,51 +1,46 @@
-
 <ion-content padding class="{{ theme }}" fullscreen>
-  <ion-grid>
-    <ion-row style="height:90vh">
-      <ion-col col-12 style="margin: auto">
-        <ion-row>
-          <ion-col text-center class="grad1">
-            เด็กอ่านได้
-          </ion-col>
-        </ion-row>
-        <ion-row margin>
-          <ion-col text-center padding margin>
-            <img src="assets/imgs/{{ theme }}.png" style="width: 45vw">
-          </ion-col>
-        </ion-row>
-        <ion-row padding>
-          <ion-col text-center padding>
-            <!-- <button ion-button round full style="font-size: 4vh ;height:7vh;" (click)="goDownloadFile() " [disabled]="_check_download" >
+    <ion-grid>
+        <ion-row style="height: 90vh">
+            <ion-col col-12 style="margin: auto">
+                <ion-row>
+                    <ion-col text-center class="grad1"> เด็กอ่านได้ </ion-col>
+                </ion-row>
+                <ion-row margin>
+                    <ion-col text-center padding margin>
+                        <img src="assets/imgs/{{ theme }}.png" style="width: 45vw" />
+                    </ion-col>
+                </ion-row>
+                <ion-row padding>
+                    <ion-col text-center padding>
+                        <!-- <button ion-button round full style="font-size: 4vh ;height:7vh;" (click)="goDownloadFile() " [disabled]="_check_download" >
               ดาวน์โหลดข้อมูล (FILE)
             </button>
             <br/> -->
-            <button ion-button round full style="font-size: 4vw ;height:10vw; font-family: Khianlen; " (click)="goDownloadZip()" [disabled]="_check_downloadZip || _check_extractZip" >
+                        <button ion-button round full style="font-size: 4vw; height: 10vw; font-family: Khianlen" (click)="goDownloadZip()" [disabled]="_check_downloadZip || _check_extractZip">
               ดาวน์โหลดเสียง
             </button>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
+                        <!-- <button ion-button round full style="font-size: 4vw ;height:10vw; font-family: Khianlen; " (click)="goSkip()" [disabled]="_check_downloadZip || _check_extractZip" >
+              skip (test)
+            </button> -->
+                        <br />
+                        <br />
+                        <br />
+                        <br />
 
+                        <ng-container *ngIf="_check_downloadZip">
+                            <progress-bar round full [progress]="loadProgress"></progress-bar>
 
-          <ng-container *ngIf="_check_downloadZip">
-            <progress-bar round full [progress]="loadProgress"></progress-bar>
+                            <div text-center class="grad2">กำลังดาวน์โหลด...</div>
+                        </ng-container>
 
-            <div text-center class="grad2">
-              กำลังดาวน์โหลด...
-            </div>
-          </ng-container>
+                        <ng-container *ngIf="_check_extractZip">
+                            <progress-bar round full [progress]="loadProgress2"></progress-bar>
 
-          <ng-container *ngIf="_check_extractZip">
-            <progress-bar round full [progress]="loadProgress2"></progress-bar>
-
-            <div text-center class="grad2">
-              กำลังจัดเก็บ...
-            </div>
-          </ng-container>
-          </ion-col>
+                            <div text-center class="grad2">กำลังจัดเก็บ...</div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
         </ion-row>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    </ion-grid>
 </ion-content>

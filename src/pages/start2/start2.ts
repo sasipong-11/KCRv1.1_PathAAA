@@ -29,7 +29,7 @@ import { File } from '@ionic-native/file/index';
 import { FilePath } from '@ionic-native/file-path/index';
 import { ShowofflinePage } from '../showoffline/showoffline';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
-import {SimpleProgressBarProvider } from 'ionic-progress-bar';
+import { SimpleProgressBarProvider } from 'ionic-progress-bar';
 
 
 
@@ -223,23 +223,27 @@ export class StartPage2 {
     loadingzip.present();
 
 
-     const fileTransfer: FileTransferObject = this.transfer.create();
+    const fileTransfer: FileTransferObject = this.transfer.create();
 
-    let url = 'http://www.ld.in.th/kidcanread/word/testzip/KCR_Voice.zip' ;
-    let savePath = this.file.externalApplicationStorageDirectory + 'KCR_Voice.zip' ;
+    //new url 
+    let url = 'http://ld.aaa.in.th/kidcanread/word/testzip/KCR_Voice.zip' ;
+
+    //let url = 'http://www.ld.in.th/kidcanread/word/testzip/KCR_Voice.zip';
+    
+    let savePath = this.file.externalApplicationStorageDirectory + 'KCR_Voice.zip';
 
     await fileTransfer.download(url, savePath).then((entry) => {
       console.log('download complete: ' + entry.toURL());
       loadingzip.dismiss();
-                }, (error) => {
+    }, (error) => {
 
-     });
+    });
 
     await fileTransfer.onProgress((progressEvent) => {
       console.log(progressEvent);
-  var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
-  this.progress = perc;
-  });
+      var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
+      this.progress = perc;
+    });
 
 
     // Extract Zip File
@@ -250,41 +254,41 @@ export class StartPage2 {
     loadingUnzip.present();
 
 
-      const uriZipFile = this.file.externalApplicationStorageDirectory + 'KCR_Voice.zip';      //ตำแหน่งเก็บไฟล์ Data
-      console.log("uri = " + uriZipFile);
-      await this.filePath.resolveNativePath(uriZipFile)
-      .then(async (nativepath)=>{
+    const uriZipFile = this.file.externalApplicationStorageDirectory + 'KCR_Voice.zip';      //ตำแหน่งเก็บไฟล์ Data
+    console.log("uri = " + uriZipFile);
+    await this.filePath.resolveNativePath(uriZipFile)
+      .then(async (nativepath) => {
 
         // alert("Unzipping.");
 
         console.log("nativepath = " + nativepath);
         await this.zip.unzip(nativepath,
-        await this.file.externalApplicationStorageDirectory ,(progress)=>{
+          await this.file.externalApplicationStorageDirectory, (progress) => {
 
-          console.log('Unzipping, ' + Math.round((progress.loaded / progress.total) * 100) + '%');
+            console.log('Unzipping, ' + Math.round((progress.loaded / progress.total) * 100) + '%');
 
-          this.progress = ((progress.loaded / progress.total) * 100);
+            this.progress = ((progress.loaded / progress.total) * 100);
 
-          if (progress.loaded > progress.total) {
-            // loadingUnzip.setContent('Unzipping, ' + Math.round((progress.loaded / progress.total) * 100) + '%');
-          }
-          console.warn(this.progress);
+            if (progress.loaded > progress.total) {
+              // loadingUnzip.setContent('Unzipping, ' + Math.round((progress.loaded / progress.total) * 100) + '%');
+            }
+            console.warn(this.progress);
 
-        }).then((result)=>{
-          if(result === 0){
+          }).then((result) => {
+            if (result === 0) {
 
-            loadingUnzip.dismiss();
-            this.navCtrl.push(StartPage);
-          }
-          else if(result === -1){
-            loadingUnzip.dismiss();
-            alert("Unzip Failed.");
-          }
-        }).catch((e)=>{console.log(e);})
+              loadingUnzip.dismiss();
+              this.navCtrl.push(StartPage);
+            }
+            else if (result === -1) {
+              loadingUnzip.dismiss();
+              alert("Unzip Failed.");
+            }
+          }).catch((e) => { console.log(e); })
 
 
-      },(err)=>{
-      alert(JSON.stringify(err));
+      }, (err) => {
+        alert(JSON.stringify(err));
       })
 
 

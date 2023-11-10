@@ -3,7 +3,7 @@
     <ion-icon name="settings"></ion-icon>
   </button>
 
-  <ion-fab-list class="fab-list" side="bottom" >
+  <ion-fab-list class="fab-list animate fadeInDown one " side="bottom" >
 
     <ion-item class="fab-item1">
     <button class="grad2" (click)="goViewDocument(fab)" >
@@ -22,7 +22,7 @@
   </ion-fab-list>
 </ion-fab>
 
-<ion-content padding class="{{ theme }}" fullscreen>
+<ion-content padding class="{{ theme }}" fullscreen (click)="closeFab(fab)" >
   <ion-grid>
     <ion-row style="height:90vh">
       <ion-col col-12 style="margin: auto">

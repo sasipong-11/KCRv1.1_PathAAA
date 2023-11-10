@@ -7,6 +7,7 @@ import { ShowPage } from '../show/show';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { ShowofflinePage } from '../showoffline/showoffline';
+import { ShowofflineV2Page } from '../showoffline-v2/showoffline-v2';
 
 /**
  * Generated class for the HistoryPage page.
@@ -41,7 +42,8 @@ export class HistoryPage {
 
   }
 
-  showofflinePage: ShowofflinePage
+  //showofflinePage: ShowofflinePage
+  showofflinePageV2 : ShowofflineV2Page
 
   ionViewWillEnter() {
     if (this.platform.is('android') || this.platform.is('ios')) {
@@ -73,9 +75,7 @@ export class HistoryPage {
     };
     this.nativePageTransitions.slide(options);
 
-
-
-    this.navCtrl.push(ShowofflinePage,
+    this.navCtrl.push(ShowofflineV2Page,
       {
         qrData: this.sortHistory[index]["his_code"],
         page: 'historypage'

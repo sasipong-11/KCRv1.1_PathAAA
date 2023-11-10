@@ -5,66 +5,62 @@
 </ion-fab> -->
 
 <ion-content padding class="{{ theme }}" fullscreen>
-  <ion-grid>
-    <ion-row style="height:90vh">
-      <ion-col col-12 style="margin: auto">
-        <ion-row>
-          <ion-col text-center class="grad1">
-            เด็กอ่านได้
-          </ion-col>
-        </ion-row>
+    <ion-grid>
+        <ion-row style="height: 90vh">
+            <ion-col col-12 style="margin: auto">
+                <ion-row>
+                    <ion-col text-center class="grad1"> เด็กอ่านได้ </ion-col>
+                </ion-row>
 
-        <!-- <ion-row margin>
+                <!-- <ion-row margin>
           <ion-col text-center padding margin>
             <img src="assets/imgs/{{ theme }}.png" style="width: 45vw">
           </ion-col>
         </ion-row> -->
 
-        <ion-row margin>
-          <ion-col text-center class="grad2">
-            <img src="assets/imgs/{{ theme }}.png" style="width: 45vw">
-          </ion-col>
-        </ion-row>
+                <ion-row margin>
+                    <ion-col text-center class="grad2">
+                        <img src="assets/imgs/{{ theme }}.png" style="width: 45vw" />
+                    </ion-col>
+                </ion-row>
 
-        <ion-row >
-          <ion-col >
-            <ion-item class="item" >
+                <ion-row>
+                    <ion-col>
+                        <ion-item class="item">
+                            <ion-label>
+                                <ion-icon name="key"></ion-icon>
+                            </ion-label>
 
-              <ion-label >
-                <ion-icon name="key"></ion-icon>
-              </ion-label>
+                            <ion-input maxlength="25" type="text" placeholder="ใส่รหัสเปิดใช้งาน" [(ngModel)]="inputKey" id="input"></ion-input>
+                        </ion-item>
 
-              <ion-input maxlength="25" type="text" placeholder="ใส่รหัสเปิดใช้งาน" [(ngModel)]="inputKey" text-center id="input"></ion-input>
-
-            </ion-item>
-
-            <!-- <textarea type="text" ion-button round style="height:4vh;width: 80vw;" [(ngModel)]="inputKey" text-center id="input" class="grad3">
+                        <!-- <textarea type="text" ion-button round style="height:4vh;width: 80vw;" [(ngModel)]="inputKey" text-center id="input" class="grad3">
               ใส่รหัสเปิดใช้งาน
             </textarea> -->
 
-            <!-- <ion-icon class="test3" name="key" margin="0"></ion-icon>
+                        <!-- <ion-icon class="test3" name="key" margin="0"></ion-icon>
             <ion-input text-left class="test4" placeholder="ใส่รหัสเปิดใช้งาน"></ion-input> -->
+                    </ion-col>
+                </ion-row>
 
-          </ion-col>
-
-        </ion-row>
-
-
-        <ion-row padding>
-          <ion-col text-center padding>
-            <button ion-button round full style="font-size: 4vw ;height:10vw; font-family: Khianlen;" (click)="goDownload()">
+                <ion-row padding>
+                    <ion-col text-center padding>
+                        <button ion-button round full style="font-size: 4vw; height: 10vw; font-family: Khianlen" (click)="goDownload()">
               ยืนยัน
             </button>
-            <!--  <button ion-button round style="font-size: 5vh ;height:7vh;" (click)="goWeb()">
+                        <!-- <button ion-button round full style="font-size: 4vw; height: 10vw; font-family: Khianlen" (click)="goSkip()">
+              skip (test)
+            </button> -->
+                        <!--  <button ion-button round style="font-size: 5vh ;height:7vh;" (click)="goWeb()">
               ไม่มีรหัส
             </button>
             <br />
            <button ion-button round full style="font-size: 5vh ;height:7vh;" (click)="goHistory()">
               ประวัติการใช้
             </button> -->
-          </ion-col>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
         </ion-row>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    </ion-grid>
 </ion-content>

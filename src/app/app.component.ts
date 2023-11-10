@@ -14,16 +14,24 @@ import { ShowPage } from '../pages/show/show';
 import { ApiProvider } from '../providers/api/api';
 import { ActivationPage } from '../pages/activation/activation';
 import { DownloadPage } from '../pages/download/download';
+import { ShowofflinePage } from '../pages/showoffline/showoffline';
+import { TestdataPage } from '../pages/testdata/testdata';
+import { ShowcustomPage } from '../pages/showcustom/showcustom';
+import { ShowofflineV2Page } from '../pages/showoffline-v2/showoffline-v2';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
 
-// rootPage: any = ActivationPage;
-rootPage: any ;
-hasKey: boolean = false;
-deviceID: string;
+  // rootPage: any = TestdataPage;
+  //rootPage: any = ShowofflineV2Page;
+
+  // rootPage: any = DownloadPage;
+
+  rootPage: any;
+  hasKey: boolean = false;
+  deviceID: string;
 
   constructor(platform: Platform,
     statusBar: StatusBar,
@@ -43,61 +51,30 @@ deviceID: string;
       statusBar.hide();
       splashScreen.hide();
 
-      // ตรวจสอบตัวแปร Shared Sreference เพื่อสลับหน้าแรกของแอปพลิเคชัน
-      if (await storageDevice.get('registered') == 'true' && await storageDevice.get('downloaded') == null) {
+      // // ตรวจสอบตัวแปร Shared Preference เพื่อสลับหน้าแรกของแอปพลิเคชัน
+
+      if (await storageDevice.get('registered') == 'true'
+        && await storageDevice.get('downloaded') == null) {
+
         // กรณีที่ลงทะเบียนสำเร็จแต่ดาวน์โหลดไม่สำเร็จ
         this.rootPage = DownloadPage;
         console.warn("Registered ! but download not finished. => Go to Download Page.");
-      } else if (await storageDevice.get('registered') == 'true' && await storageDevice.get('downloaded') == 'true') {
+
+      } else if (await storageDevice.get('registered') == 'true'
+        && await storageDevice.get('downloaded') == 'true') {
+
         // กรณีที่ลงทะเบียนสำเร็จและดาวน์โหลดสำเร็จ
         this.rootPage = StartPage;
         console.warn("Downloaded ! => Go to Start Page");
       } else {
         // กรณีที่ยังไม่ได้ลงทะเบียน
         this.rootPage = ActivationPage;
-        // this.checkDeviceID();
         console.warn("Not registered yet ! => Go to Activation Page");
       }
+
+
     });
   }
-
-  // async checkDeviceID(){
-  //   /** Get Unique Device ID */
-  //   await this.uniqueDeviceID.get()
-  //   .then((uuid: string) => {
-  //     this.deviceID = uuid;
-  //     console.info ('Device ID is : ' + this.deviceID);
-  //     this.storageDevice.set('deviceID', this.deviceID);
-  //     this.rootPage = ActivationPage;
-  //   })
-  //   .catch(async (error: any) => {
-  //     console.warn(error);
-
-  //     // Show alert เมื่อผู้ใช้ปฏิเสธ permission
-  //     const alert = await this.alertController.create({
-  //       cssClass: 'my-custom-class',
-  //       message: 'อนุญาตการโทรเพื่อเข้าถึง<strong> Device ID </strong>',
-  //       buttons: [
-  //         {
-  //           text: 'ยกเลิก',
-  //           role: 'cancel',
-  //           cssClass: 'secondary',
-  //           handler: (blah) => {
-  //           console.log('Confirm Cancel: blah');
-  //           }
-  //         }, {
-  //           text: 'ตกลง',
-  //           handler: () => {
-  //             console.log('Confirm Okay');
-  //             this.checkDeviceID();
-  //           }
-  //         }
-  //       ]
-  //     });
-  //     await alert.present();
-  //   });
-
-  // }
 
 }
 

@@ -10,7 +10,7 @@ import {
 import { StartPage } from '../start/start';
 import { StorageProvider } from '../../providers/storage/storage';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
-import { NativePageTransitions} from '@ionic-native/native-page-transitions';
+import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { ApiProvider } from '../../providers/api/api';
 import { ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
@@ -25,8 +25,8 @@ import { UniqueDeviceID } from '@ionic-native/unique-device-id';
 export class ActivationPage {
   theme: string = 'default';
   APP_name = '';
-  inputKey : string ;
-  outputKey : string ;
+  inputKey: string;
+  outputKey: string;
   deviceID: string;
 
   constructor(public navCtrl: NavController,
@@ -39,8 +39,9 @@ export class ActivationPage {
     public toastController: ToastController,
     private uniqueDeviceID: UniqueDeviceID,
     public storageDevice: Storage) {
-//data for test
-      this.inputKey = "QDPM0GFE608JW3026BJ100000";
+
+    //data for test
+    //this.inputKey = "QDPM0GFE608JW3026BJ100000";
 
   }
 
@@ -52,9 +53,9 @@ export class ActivationPage {
     // }
 
     /**Debug Orientation not support on this device. */
-    if(this.platform.is('cordova')){
-      this.platform.ready().then(()=>{
-       this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+    if (this.platform.is('cordova')) {
+      this.platform.ready().then(() => {
+        this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
       })
     }
     await this.storage.fetch();
@@ -62,35 +63,36 @@ export class ActivationPage {
     this.checkDeviceID();
   }
 
-  async checkDeviceID(){
+  async checkDeviceID() {
     /** Get Unique Device ID */
-    await this.uniqueDeviceID.get()
-    .then((uuid: string) => {
-      this.deviceID = uuid;
-      console.warn('Device ID is : ' + this.deviceID);
-      this.storageDevice.set('deviceID', this.deviceID);
-    })
-    .catch(async (error: any) => {
+    if (this.platform.is('cordova')) {
+      await this.uniqueDeviceID.get()
+        .then((uuid: string) => {
+          this.deviceID = uuid;
+          console.warn('Device ID is : ' + this.deviceID);
+          this.storageDevice.set('deviceID', this.deviceID);
+        })
+        .catch(async (error: any) => {
 
-      // Show alert เมื่อผู้ใช้ปฏิเสธ permission
-      console.warn('permission denied !');
-      const alert = await this.alertController.create({
-        cssClass: 'my-custom-class',
-        message: 'อนุญาตการโทรเพื่อเข้าถึง<strong> Device ID </strong>',
-        enableBackdropDismiss: false,
-        buttons: [
-           {
-            text: 'ตกลง',
-            handler: () => {
-              console.log('Confirm Okay');
-              this.checkDeviceID();
-            }
-          }
-        ]
-      });
-      await alert.present();
-    });
-
+          // Show alert เมื่อผู้ใช้ปฏิเสธ permission
+          console.warn('permission denied !');
+          const alert = await this.alertController.create({
+            cssClass: 'my-custom-class',
+            message: 'อนุญาตการโทรเพื่อเข้าถึง<strong> Device ID </strong>',
+            enableBackdropDismiss: false,
+            buttons: [
+              {
+                text: 'ตกลง',
+                handler: () => {
+                  console.log('Confirm Okay');
+                  this.checkDeviceID();
+                }
+              }
+            ]
+          });
+          await alert.present();
+        });
+    }
   }
 
   async goDownload() {    // ปุ่มยืนยัน
@@ -102,7 +104,6 @@ export class ActivationPage {
     param.append("act", "Y");
 
     if (this.inputKey.length == 25) {    // Key ต้องมี 25 ตัวอักษร
-
       this.apiPro.getActivateData(param).then(response => {
         if (response["msg"] == 'OK') {
           this.navCtrl.push(DownloadPage);
@@ -125,11 +126,17 @@ export class ActivationPage {
         }, 1000);
       });
 
-    }else {
+    } else {
       alert('กรุณากรอกรหัสให้ครบถ้วน');
       console.warn('About character length');
 
     }
+  }
+
+  goSkip() {
+    this.storageDevice.set('registered', 'true');
+    this.navCtrl.push(DownloadPage);
+    this.navCtrl.setRoot(DownloadPage);
   }
 
 }

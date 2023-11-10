@@ -27,7 +27,7 @@ import { UniqueDeviceID } from '@ionic-native/unique-device-id';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 import { Zip } from '@ionic-native/zip/index';
-import {File} from '@ionic-native/file/index';
+import { File } from '@ionic-native/file/index';
 import { FilePath } from '@ionic-native/file-path/index';
 import { Media } from '@ionic-native/media/index';
 import { SQLite } from '@ionic-native/sqlite/index';
@@ -44,6 +44,9 @@ import { ActivationPage } from '../pages/activation/activation';
 import { DocumentViewer } from '@ionic-native/document-viewer';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { FileOpener } from '@ionic-native/file-opener';
+import { TestdataPage } from '../pages/testdata/testdata';
+import { ShowcustomPage } from '../pages/showcustom/showcustom';
+import { ShowofflineV2Page } from '../pages/showoffline-v2/showoffline-v2';
 
 /**Debug Orientation not support on this device. */
 class ScreenOrientationMock extends ScreenOrientation {
@@ -66,7 +69,10 @@ class ScreenOrientationMock extends ScreenOrientation {
     ShowofflinePage,
     DownloadPage,
     ActivationPage,
-    ProgressBarComponent
+    ProgressBarComponent,
+    TestdataPage,
+    ShowcustomPage,
+    ShowofflineV2Page
   ],
   imports: [
     BrowserModule,
@@ -89,13 +95,16 @@ class ScreenOrientationMock extends ScreenOrientation {
     StartPage2,
     ShowofflinePage,
     ActivationPage,
-    DownloadPage
+    DownloadPage,
+    TestdataPage,
+    ShowcustomPage,
+    ShowofflineV2Page
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: ScreenOrientation, useClass: ScreenOrientationMock },  //Debug Orientation not support on this device.
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     QRScanner,
     TestapiProvider,
     StorageProvider,
@@ -120,4 +129,4 @@ class ScreenOrientationMock extends ScreenOrientation {
     // SimpleProgressBarProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }

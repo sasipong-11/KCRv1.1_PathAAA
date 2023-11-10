@@ -52,6 +52,7 @@ page-activation {
   }
 
 
+
   .item{
 
     width: 100%;
@@ -62,17 +63,21 @@ page-activation {
 
 
     ion-label {
-
+      width: 10%;
       font-family: THSarabun_Bold;
       // background-color:  #6a8883;
       font-size: 6vw;
 
       ion-icon{
+
+        // background: #1f618d;
         color:  #08ae9e;
       }
     }
 
     ion-input{
+      margin-left: auto;
+      width: 90%;
       color: #555353;
       font-family: THSarabun_Bold;
       // background-color:  #a9f7eb;

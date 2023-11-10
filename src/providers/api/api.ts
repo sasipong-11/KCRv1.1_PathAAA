@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Option } from 'ionic-angular';
-import {Observable } from 'rxjs/Observable';
-import { catchError, map} from 'rxjs/operators';
+import { Observable } from 'rxjs/Observable';
+import { catchError, map } from 'rxjs/operators';
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -21,7 +21,12 @@ import { HttpClientModule } from '@angular/common/http';
 export class ApiProvider {
   public data: any;
 
-  _Host: string = 'http://www.ld.in.th/kidcanread/word/';
+  //new Host
+  _Host: string = 'http://ld.aaa.in.th/kidcanread/word/';
+
+  //_Host: string = 'http://ld.in.th/kidcanread/word/';
+
+  _HostTest: string = 'http://192.168.1.105/readingbook/select_book.php';
 
   _HostActivate: string = 'http://203.185.132.44:8080/apis/activationV3_kcr.php?cid=635&pid=10&bid=FKNECIHIWBAATBDEFTB0IFR0F&id=538&name=LD&org=NSTDA&tel=888&prgVersion=KidCanRead';
 
@@ -29,8 +34,6 @@ export class ApiProvider {
   constructor(public http: HttpClient) {
     console.log('Hello ApiProvider Provider');
   }
-
-
 
   public getActivateData(param: any) {
     return new Promise((resolve, reject) => {
@@ -64,6 +67,19 @@ export class ApiProvider {
       this.http.get(url)
         .subscribe(res => {
           resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  public getTest() {
+    return new Promise((resolve, reject) => {
+      let url = this._HostTest;
+      this.http.get(url)
+        .subscribe(res => {
+          resolve(res);
+          console.log(res);
         }, (err) => {
           reject(err);
         });

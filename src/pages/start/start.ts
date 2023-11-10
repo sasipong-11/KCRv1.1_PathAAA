@@ -21,9 +21,7 @@ import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-vi
 import { FileOpener } from '@ionic-native/file-opener';
 import { File } from '@ionic-native/file/index';
 import { catchError } from 'rxjs/operators';
-
-
-
+import { ShowofflineV2Page } from '../showoffline-v2/showoffline-v2';
 
 @IonicPage()
 @Component({
@@ -60,12 +58,12 @@ export class StartPage {
         console.log('File exists')
 
         this.file.removeFile(this.file.externalApplicationStorageDirectory, 'KCR_Voice.zip')
-        .then(re => console.warn('Useless zip file deleted.'));
+          .then(re => console.warn('Useless zip file deleted.'));
 
       })
-    .catch(async err => {
-      console.log('Directory doesnt exist');
-  });
+      .catch(async err => {
+        console.log('Directory doesnt exist');
+      });
 
   }
 
@@ -80,6 +78,7 @@ export class StartPage {
         this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
       })
     }
+
     await this.storage.fetch();
     this.APP_name = this.storage.getDBName();
     this.theme = this.storage.getLevel();
@@ -96,6 +95,10 @@ export class StartPage {
       }, 2000);
     });
 
+  }
+
+  closeFab(fab: FabContainer) {
+    fab.close();
   }
 
   presentAlertExpireApp() {
@@ -115,7 +118,8 @@ export class StartPage {
   }
 
   async goScan() {
-    this.navCtrl.push(ShowofflinePage,
+    this.navCtrl.push(ShowofflineV2Page,
+
       {
         qrData: null,
         page: 'startpage'
@@ -131,7 +135,7 @@ export class StartPage {
 
     const alert = await this.alertController.create({
       title: 'ยกเลิกรหัสการใช้งาน',
-      cssClass:  this.theme ,
+      cssClass: this.theme,
       message: '  หากยกเลิกรหัสคุณจะไม่สามารถใช้งานแอปพลิเคชันบนอุปกรณ์นี้ได้ จนกว่าจะใส่รหัสเปิดใช้งานอีกครั้ง',
       buttons: [
         {
@@ -189,24 +193,24 @@ export class StartPage {
     fab.close();
 
     await this.file.checkFile(this.file.externalApplicationStorageDirectory, 'document.pdf')
-    .then(_ => console.log('File exists'))
-    .catch(async err => {
-      console.log('Directory doesnt exist');
+      .then(_ => console.log('File exists'))
+      .catch(async err => {
+        console.log('Directory doesnt exist');
 
-      await this.file.copyFile(this.file.applicationDirectory + 'www/assets/', 'document.pdf', this.file.externalApplicationStorageDirectory, 'document.pdf')
-      .then(data => {
-        console.log(" file copied ")
-      })
-      .catch(err => {
-      })
+        await this.file.copyFile(this.file.applicationDirectory + 'www/assets/', 'document.pdf', this.file.externalApplicationStorageDirectory, 'document.pdf')
+          .then(data => {
+            console.log(" sucess! ")
+          })
+          .catch(err => {
+          })
 
-  });
+      });
 
-  let savePath = this.file.externalApplicationStorageDirectory + 'document.pdf';
+    let savePath = this.file.externalApplicationStorageDirectory + 'document.pdf';
 
-   await this.fileOpener.open(savePath, 'application/pdf')
-  .then(() => console.log('File is opened'))
-  .catch(e => console.log('Error opening file', e));
+    await this.fileOpener.open(savePath, 'application/pdf')
+      .then(() => console.log('File is opened'))
+      .catch(e => console.log('Error opening file', e));
 
   }
 

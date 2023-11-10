@@ -55,12 +55,57 @@ export class SqliteProvider {
           console.log("error " + JSON.stringify(e))
           reject(e);
         });
+      }).catch(e => {
+        console.log("error " + JSON.stringify(e))
       });
       })
       .catch(e => {
         alert("error " + JSON.stringify(e))
       });
   }
+
+  public async testVoiceFile(word_id){
+
+
+    /* คัดลอกฐานข้อมูลชื่อ KCR_Data.db จากโฟลเดอร์ www เข้าสู่หน่วยความจำโทรศัพท์ */
+    await this.sqliteDbCopy.copy('KCR_Data.db', 0)
+    .then((res: any) => console.log(''))
+    .catch((error: any) => console.error(error));
+
+
+    /* เข้าถึงฐานข้อมูลที่ถูกคัดลอก */
+    await this.sqlite.create({
+      name: 'KCR_Data.db',
+      location: 'default'
+    })
+      .then((db: SQLiteObject) => {
+        this.databaseObj = db;
+        // console.log(db + ' Created !!');
+        return new Promise((resolve, reject) => {
+        db.executeSql("SELECT * FROM kcr_content " +
+         "WHERE word_id = '"+ word_id + "' " , [])
+        .then((res) => {
+          this.row_data = [];
+          if (res.rows.length > 0) {
+            for (var i = 0; i < res.rows.length; i++) {
+              this.row_data.push(res.rows.item(i));
+            }
+            resolve(this.row_data);
+            // console.log(this.row_data);
+            // console.log(this.row_data[0]);
+          }
+        })
+        .catch(e => {
+          console.log("error " + JSON.stringify(e))
+          reject(e);
+        });
+      });
+      })
+      .catch(e => {
+        alert("error " + JSON.stringify(e))
+      });
+  }
+
 
 
 }

@@ -50,6 +50,9 @@ page-showoffline {
       button {
         background-color: #dd9292;
       }
+      .card2{
+        border:10px solid #dd9292;
+      }
     }
     .p1 {
       background-color: #e7ebca;
@@ -58,6 +61,9 @@ page-showoffline {
       }
       button {
         background-color: #5d6d7e;
+      }
+      .card2{
+        border:10px solid #5d6d7e;
       }
     }
     .p2 {
@@ -68,6 +74,9 @@ page-showoffline {
       button {
         background-color: #1f618d;
       }
+      .card2{
+        border:10px solid #1f618d;
+      }
     }
     .p3 {
       background-color: #feefc4;
@@ -77,7 +86,204 @@ page-showoffline {
       button {
         background-color: #dc7633;
       }
+      .card2{
+        border:10px solid #dc7633;
+      }
     }
+
+///////////////////////////////////////////////////////////////////////////////////////////
+    .card2 {
+      background:#fff;
+      // border:10px solid #dd9292;
+      padding:0px;
+      margin: auto;
+      overflow:hidden;
+      align-items: center;
+      width: 50%;
+      align-self: center;
+      justify-content: center;
+      border-radius: 20px;
+
+      ion-card-header{
+        ion-card-title{
+          font-family: THSarabun_Bold !important;
+          color: #000000;
+          padding: 0px;
+          font-size: 15vw;
+        }
+      }
+      ion-card-content{
+        font-family: THSarabun_Bold !important;
+          color: #000000;
+          padding-bottom: 15px;
+          font-size: 3vw;
+      }
+    }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+/*=== Basic box styling  ===*/
+
+
+/*=== Trigger  ===*/
+.animate {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+/*=== Optional Delays, change values here  ===*/
+.one {
+-webkit-animation-delay: 0.4s;
+-moz-animation-delay: 0.4s;
+animation-delay: 0.4s;
+}
+
+.two {
+-webkit-animation-delay: 1.7s;
+-moz-animation-delay: 1.7s;
+animation-delay: 1.7s;
+}
+
+.three {
+-webkit-animation-delay: 2.3s;
+-moz-animation-delay: 2.3s;
+animation-delay: 2.3s;
+}
+
+.four {
+-webkit-animation-delay: 3.3s;
+-moz-animation-delay: 3.3s;
+animation-delay: 3.3s;
+}
+
+/*=== Animations start here  ===*/
+/*=== FADE IN  ===*/
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+
+/*=== FADE IN DOWN ===*/
+@-webkit-keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   // ody {
+    //   font-size: 62.5%;
+    //   font-style: Arial;
+    // }
+
+    .animation-box {
+      width: 100%;
+      height: 27.5rem;
+      background-color: blue;
+      margin: 0 auto;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .animation-container {
+      width: 100%;
+      height: 100%;
+    }
+
+    @keyframes topFadeOut {
+      0% {
+        position: absolute;
+        top: -3rem;
+        opacity: 0;
+      }
+
+      75% {
+        position: absolute;
+        top: 25%;
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .first-text {
+
+
+
+      position: absolute;
+      left: 35%;
+      top: 45%;
+      opacity: 0;
+      animation-name: topFadeOut;
+      animation-duration: 3s;
+      color: rgb(0, 0, 0);
+    }
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 
     ///ready
     *,
@@ -322,4 +528,8 @@ page-showoffline {
     }
 
     ///ready
+
+
+
+
   }
